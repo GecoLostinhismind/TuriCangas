@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TuriCangas</string>
+    <string name="opciones_monumento">Opciones Monumentos</string>
+    <string name="action_settings">Settings</string>
+    <string name="about">Información</string>
+    <string name="exit">Salir</string>
+    <string name="Galeria">Galería</string>
+    <string name="Mapa">Mapa</string>
+    <string name="AR">Cómo llegar</string>
+   	<string name="Camara">Foto</string>
+   	<string name="Home">Inicio</string>
+   	<string name="Back">Atrás</string>
+   	<string name="header">Paseando Cangas</string>
+
+</resources>
