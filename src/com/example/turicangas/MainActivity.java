@@ -1,5 +1,9 @@
 package com.example.turicangas;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +14,8 @@ import android.app.ListActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
@@ -34,6 +40,7 @@ public class MainActivity extends Activity {
 	//variables para el options menu
 	private static final int INFOAPP = Menu.FIRST;
     private static final int SALIR = Menu.FIRST+1;
+    private static final String SRC="/sdcard/TuriCangas/images/";
     
     private PlacesDbAdapter dbHelper;
     private Adapter dataAdapter;
@@ -49,27 +56,40 @@ public class MainActivity extends Activity {
 	   
 		//Estos son los lugares para el menu principal que he he estado intentando meter y no he conseguido.
 		
-		if(dbHelper.isEmpty()){
-			dbHelper.createPlace(new Place("Puente Romano","43.351017","-5.133074"));
-			dbHelper.createPlace(new Place("Ermita de la Cruz","43.352127","-5.130360"));
-			dbHelper.createPlace(new Place("Dolmen","43.353142","-5.134040"));
-			dbHelper.createPlace(new Place("Iglesia Parroquial","43.350563","-5.133628"));
-			dbHelper.createPlace(new Place("Estatua de Don Pelayo","43.349066","-5.130791"));
-			dbHelper.createPlace(new Place("Aula del reino de Asturias","43.351017","-5.133628"));
-			dbHelper.createPlace(new Place("Capilla de San Antonio","43.351017","-5.133628"));
-			dbHelper.createPlace(new Place("Palacio Pintu","43.351017","-5.133628"));
-			dbHelper.createPlace(new Place("Plaza del mercado","43.351017","-5.133628"));
-			dbHelper.createPlace(new Place("Casa Dago","43.351017","-5.133628"));
+
+	    
+	    // Aqui se guardan las imagenes de Asset/img al SDCARD del telefono. Completar las imagenes. mira mas abajo para entenderlor --> loadDB()
+		try {
+			loadDB();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-	    
-	    
-	     
+		
 		  ListView listView = (ListView) findViewById(R.id.listview1);
+		  
+		 
 		  
 		  places = new ArrayList<Place>();
 		  
 		  dataAdapter = new Adapter(this, R.layout.rowplaces, places);
 		  listView.setAdapter(this.dataAdapter);
+		  
+		  listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+		        @Override
+		        public void onItemClick(AdapterView<?> parent, final View view,int position, long id) {
+		        	final Place item = (Place) parent.getItemAtPosition(position);
+		        	Bundle extras = new Bundle();
+		        	extras.putString("name",item.getName());
+		        	extras.putString("lat",item.getLat());
+		        	extras.putString("lng",item.getLng());
+
+		        	Intent intent = new Intent(MainActivity.this, Opciones.class);
+		        	intent.putExtras(extras);
+		    		startActivity(intent);
+		        }
+		          
+		      });
 		  
 		  
 		  
@@ -183,6 +203,101 @@ public class MainActivity extends Activity {
                 return v;
         }
 	}
+	 
+	 
+	 public void loadDB() throws IOException{
+		 
+		 boolean mboolean = false;
+
+	    	SharedPreferences settings = getSharedPreferences("PREFS_NAME", 0);
+	    	mboolean = settings.getBoolean("FIRST_RUN", false);
+	    	if (!mboolean) {
+
+	    		// do the thing for the first time
+	    		
+		
+	    		AssetManager assetManager = getAssets();
+	    		String[] locales = assetManager.list("img");
+	    		
+	    		File folder = new File(SRC);
+            	if (!folder.exists())
+            		folder.mkdirs();
+            	
+            	
+	    		
+	    		
+	    		
+	    		for(int i=0;i<locales.length;i++){
+	    			InputStream is = assetManager.open("img/"+locales[i]);
+	    			File out = new File(SRC, locales[i]);
+	            	byte[] buffer = new byte[1024];
+	            	FileOutputStream fos = new FileOutputStream(out);
+	            	int read = 0;
+
+	            	 while ((read = is.read(buffer, 0, 1024)) >= 0) {
+	            	        fos.write(buffer, 0, read);
+	            	  }
+
+	            	fos.flush();
+	            	fos.close();
+	            	is.close();
+	    		}
+	    		
+	    		
+	    		
+	    		
+	    		
+	    		
+	    		dbHelper.createPlace(new Place("Puente Romano","43.351017","-5.133074"));
+				dbHelper.createPlace(new Place("Ermita de la Cruz","43.352127","-5.130360"));
+				dbHelper.createPlace(new Place("Dolmen","43.353142","-5.134040"));
+				dbHelper.createPlace(new Place("Iglesia Parroquial","43.350563","-5.133628"));
+				dbHelper.createPlace(new Place("Estatua de Don Pelayo","43.349066","-5.130791"));
+				dbHelper.createPlace(new Place("Aula del reino de Asturias","43.351017","-5.133628"));
+				dbHelper.createPlace(new Place("Capilla de San Antonio","43.351017","-5.133628"));
+				dbHelper.createPlace(new Place("Palacio Pintu","43.351017","-5.133628"));
+				dbHelper.createPlace(new Place("Plaza del mercado","43.351017","-5.133628"));
+				dbHelper.createPlace(new Place("Casa Dago","43.351017","-5.133628"));
+				
+				dbHelper.insertPic("Aula del reino de Asturias", "cangas_aulaReino.jpg");
+				dbHelper.insertPic("Casa Dago", "cangas_Dago.jpg");
+				dbHelper.insertPic("Casa Dago", "cangas_Dago_2.jpg");
+				dbHelper.insertPic("Dolmen", "cangas_dolmen_2.jpg");
+				dbHelper.insertPic("Dolmen", "cangas_dolmen_3.jpg");
+				
+				// Continua metiendo imagenes en assets/img según lugar (fijate como esta nombrados entre las lineas 251-260)
+				// No metas imagenes muy pesadas. y tienes que escribir tb el nombre del archivo
+				// Así se inicializa toda la aplicacion.
+				
+				/*dbHelper.insertPic("Aula del reino de Asturias", "cangas_aulaReino.jpg");
+				dbHelper.insertPic("Aula del reino de Asturias", "cangas_aulaReino.jpg");
+				dbHelper.insertPic("Aula del reino de Asturias", "cangas_aulaReino.jpg");
+				dbHelper.insertPic("Aula del reino de Asturias", "cangas_aulaReino.jpg");
+				dbHelper.insertPic("Aula del reino de Asturias", "cangas_aulaReino.jpg");
+				dbHelper.insertPic("Aula del reino de Asturias", "cangas_aulaReino.jpg");
+				dbHelper.insertPic("Aula del reino de Asturias", "cangas_aulaReino.jpg");
+				dbHelper.insertPic("Aula del reino de Asturias", "cangas_aulaReino.jpg");
+				dbHelper.insertPic("Aula del reino de Asturias", "cangas_aulaReino.jpg");
+				dbHelper.insertPic("Aula del reino de Asturias", "cangas_aulaReino.jpg");
+				dbHelper.insertPic("Aula del reino de Asturias", "cangas_aulaReino.jpg");
+				dbHelper.insertPic("Aula del reino de Asturias", "cangas_aulaReino.jpg");
+				dbHelper.insertPic("Aula del reino de Asturias", "cangas_aulaReino.jpg");
+				dbHelper.insertPic("Aula del reino de Asturias", "cangas_aulaReino.jpg");*/
+				
+	    		
+	    			
+	    		settings = getSharedPreferences("PREFS_NAME", 0);
+		        SharedPreferences.Editor editor = settings.edit();
+		        editor.putBoolean("FIRST_RUN", true);
+		        editor.commit();    
+		       // return true;
+	    	                    
+	    	} else {
+	    	 // other time your app loads
+	    		//return false;
+	    	}
+		 
+	 }
 	 
 	 
 	 

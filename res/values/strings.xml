@@ -9,9 +9,12 @@
     <string name="Galeria">Galería</string>
     <string name="Mapa">Mapa</string>
     <string name="AR">Cómo llegar</string>
-   	<string name="Camara">Foto</string>
-   	<string name="Home">Inicio</string>
-   	<string name="Back">Atrás</string>
-   	<string name="header">Paseando Cangas</string>
+    <string name="Camara">Foto</string>
+    <string name="Home">Inicio</string>
+    <string name="Back">Atrás</string>
+    <string name="header">Paseando Cangas</string>
+    <string name="title_activity_prueba">Prueba</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_galeria">Galeria</string>
 
 </resources>

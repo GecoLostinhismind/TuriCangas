@@ -1,3 +1,4 @@
+
 package com.example.turicangas;
 
 import java.util.ArrayList;
@@ -12,12 +13,11 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class PlacesDbAdapter extends SQLiteOpenHelper {
+public class PlacesDbAdapter extends SQLiteOpenHelper  {
 	
 	
 	
 	public static final String KEY_ROWID = "_id";
-	//public static final String KEY_PIC = "pic";
 	public static final String KEY_NAME = "name";
 	public static final String KEY_LAT = "latitude";
 	public static final String KEY_LNG = "longitude";
@@ -29,7 +29,7 @@ public class PlacesDbAdapter extends SQLiteOpenHelper {
 	
 	 
 	 private static final String DATABASE_NAME = "Cangas";
-	 private static final String SQLITE_TABLE = "Places";
+	 private static final String SQLITE_TABLE_PLACES = "Places";
 	 private static final String SQLITE_TABLE_PICS = "Pics";
 	 
 	 private static final int DATABASE_VERSION = 1;
@@ -37,12 +37,12 @@ public class PlacesDbAdapter extends SQLiteOpenHelper {
 	 
 	 
 	 private static final String DATABASE_CREATE_PLACES =
-	  "CREATE TABLE if not exists " + SQLITE_TABLE + " (" +
+	  "CREATE TABLE if not exists " + SQLITE_TABLE_PLACES + " (" +
 	  KEY_ROWID + " INTEGER PRIMARY KEY," +
 	  KEY_NAME +" TEXT,"+KEY_LAT+" TEXT,"+KEY_LNG+" TEXT"+")";
 	 
 	 private static final String DATABASE_CREATE_PICS =
-			  "CREATE TABLE if not exists " + SQLITE_TABLE + " (" +
+			  "CREATE TABLE if not exists " + SQLITE_TABLE_PICS + " (" +
 			  KEY_ROWID + " INTEGER PRIMARY KEY," +
 			  KEY_NAME +" TEXT,"+KEY_SRC+" TEXT)";
 	 
@@ -62,7 +62,8 @@ public class PlacesDbAdapter extends SQLiteOpenHelper {
 	 public void onUpgrade(SQLiteDatabase mdb, int oldVersion, int newVersion) {
 		 Log.w(TAG, "Upgrading database from version " + oldVersion + " to "
 				 + newVersion + ", which will destroy all old data");
-		 mdb.execSQL("DROP TABLE IF EXISTS " + SQLITE_TABLE);
+		 mdb.execSQL("DROP TABLE IF EXISTS " + SQLITE_TABLE_PLACES);
+		 mdb.execSQL("DROP TABLE IF EXISTS " + SQLITE_TABLE_PICS);
 		 onCreate(mdb);
 	 }
 	 
@@ -81,7 +82,7 @@ public class PlacesDbAdapter extends SQLiteOpenHelper {
 		
 				 
 			try{	// Inserting Row
-		        mdb.insert(SQLITE_TABLE, null, initialValues);
+		        mdb.insert(SQLITE_TABLE_PLACES, null, initialValues);
 		        
 		    }
 		    catch(SQLiteException e){
@@ -93,13 +94,12 @@ public class PlacesDbAdapter extends SQLiteOpenHelper {
 	public List<Place> getPlaces() {
 		List<Place> places = new ArrayList<Place>();
 		
-		String selectQuery = "SELECT * FROM " + SQLITE_TABLE + " ORDER BY " + KEY_NAME;
+		String selectQuery = "SELECT * FROM " + SQLITE_TABLE_PLACES + " ORDER BY " + KEY_NAME;
 		
 		SQLiteDatabase mdb = this.getWritableDatabase();
         Cursor mCursor = mdb.rawQuery(selectQuery, null);
         
-        
-        
+    
         if (mCursor.moveToFirst()) {
             do {
             	Place place = new Place();
@@ -116,9 +116,55 @@ public class PlacesDbAdapter extends SQLiteOpenHelper {
         return places;
 	}
 	
+	
+	public void insertPic(String name, String src) { 
+		
+		SQLiteDatabase mdb = this.getWritableDatabase();		 
+		ContentValues initialValues = new ContentValues();
+			//initialValues.put(KEY_CODE, code);
+			initialValues.put(KEY_NAME, name);
+			initialValues.put(KEY_SRC, src);
+
+		
+				 
+			try{	// Inserting Row
+		        mdb.insert(SQLITE_TABLE_PICS, null, initialValues);
+		        
+		    }
+		    catch(SQLiteException e){
+		    	Log.v("tag","error sql"+e.getMessage());
+		    }
+		        mdb.close(); // Closing database connection 		  
+	}
+	
+	
+	
+	public List<String> getPics(String value) {
+		List<String> pics = new ArrayList<String>();
+		
+		String selectQuery = "SELECT "+KEY_NAME+","+KEY_SRC+" FROM " + SQLITE_TABLE_PICS + " WHERE " +KEY_NAME+" = '"+value+"'";
+		
+		SQLiteDatabase mdb = this.getWritableDatabase();
+        Cursor mCursor = mdb.rawQuery(selectQuery, null);
+        
+        
+        
+        if (mCursor.moveToFirst()) {
+            do {
+            	
+            		pics.add(mCursor.getString(1));
+            	
+            }while(mCursor.moveToNext());
+        }
+        
+        mCursor.close();
+        return pics;
+	}
+	
+	
 	public boolean isEmpty(){
 		
-		String selectQuery = "SELECT * FROM " + SQLITE_TABLE + " ORDER BY " + KEY_NAME;
+		String selectQuery = "SELECT * FROM " + SQLITE_TABLE_PLACES + " ORDER BY " + KEY_NAME;
 		
 		SQLiteDatabase mdb = this.getWritableDatabase();
         Cursor mCursor = mdb.rawQuery(selectQuery, null);
@@ -129,4 +175,6 @@ public class PlacesDbAdapter extends SQLiteOpenHelper {
 	
 
 }
+
+
 

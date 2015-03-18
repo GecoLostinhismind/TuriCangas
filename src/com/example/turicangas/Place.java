@@ -7,6 +7,7 @@ public class Place {
 	String _name;
 	String _lat;
 	String _lng;
+	String _src;
 	
 	//Empty constructor
 	public Place() {
@@ -62,6 +63,14 @@ public class Place {
 
 		public void setLat(String _lat) {
 			this._lat = _lat;
+		}
+
+		public String get_src() {
+			return _src;
+		}
+
+		public void set_src(String _src) {
+			this._src = _src;
 		}
 			
 	}
