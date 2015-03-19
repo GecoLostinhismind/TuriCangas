@@ -107,6 +107,28 @@ public class Opciones extends ActionBarActivity {
         });
 		
 		
+		mapButton.setOnClickListener(new OnClickListener() {
+			 
+            @Override
+            public void onClick(View view) {
+           
+            	
+            	//Bundle extras = new Bundle();
+	        	//extras.putString("name",name);
+	        	//extras.putString("Lat", lat);
+	        	//extras.putString("Lng", lng);
+	        	
+	        	Intent intent = new Intent(Opciones.this, Mapa.class);
+	        	//intent.putExtras(extras);
+	    		startActivity(intent);
+            }
+ 
+        });
+		
+		
+		
+		
+		
 	}
 	
 	@Override

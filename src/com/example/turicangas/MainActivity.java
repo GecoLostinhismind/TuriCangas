@@ -247,42 +247,43 @@ public class MainActivity extends Activity {
 	    		
 	    		
 	    		
-	    		
-	    		dbHelper.createPlace(new Place("Puente Romano","43.351017","-5.133074"));
-				dbHelper.createPlace(new Place("Ermita de la Cruz","43.352127","-5.130360"));
-				dbHelper.createPlace(new Place("Dolmen","43.353142","-5.134040"));
-				dbHelper.createPlace(new Place("Iglesia Parroquial","43.350563","-5.133628"));
-				dbHelper.createPlace(new Place("Estatua de Don Pelayo","43.349066","-5.130791"));
-				dbHelper.createPlace(new Place("Aula del reino de Asturias","43.351017","-5.133628"));
-				dbHelper.createPlace(new Place("Capilla de San Antonio","43.351017","-5.133628"));
-				dbHelper.createPlace(new Place("Palacio Pintu","43.351017","-5.133628"));
-				dbHelper.createPlace(new Place("Plaza del mercado","43.351017","-5.133628"));
-				dbHelper.createPlace(new Place("Casa Dago","43.351017","-5.133628"));
+	    		//Inserting places
+	    		dbHelper.createPlace(new Place("Puente Romano","43.350155","-5.131990"));
+				dbHelper.createPlace(new Place("Ermita de la Cruz","43.352665","-5.130273"));
+				dbHelper.createPlace(new Place("Dolmen","43.352666","-5.130388"));
+				dbHelper.createPlace(new Place("Iglesia Parroquial","43.350683", "-5.127166"));
+				dbHelper.createPlace(new Place("Estatua de Don Pelayo","43.350895","-5.126334"));
+				dbHelper.createPlace(new Place("Aula del reino de Asturias","43.350723","-5.130297"));
+				dbHelper.createPlace(new Place("Capilla de San Antonio","43.350723","-5.130297"));
+				dbHelper.createPlace(new Place("Palacio Pintu","43.350648","-5.126478"));
+				dbHelper.createPlace(new Place("Plaza del mercado","43.350615","-5.126276"));
+				dbHelper.createPlace(new Place("Casa Dago","43.350954","-5.125379"));			
 				
-				dbHelper.insertPic("Aula del reino de Asturias", "cangas_aulaReino.jpg");
-				dbHelper.insertPic("Casa Dago", "cangas_Dago.jpg");
-				dbHelper.insertPic("Casa Dago", "cangas_Dago_2.jpg");
-				dbHelper.insertPic("Dolmen", "cangas_dolmen_2.jpg");
-				dbHelper.insertPic("Dolmen", "cangas_dolmen_3.jpg");
+				//inserting pics
+				dbHelper.insertPic("Aula del reino de Asturias", "cangas_aulaReino.png");
+				dbHelper.insertPic("Casa Dago", "cangas_Dago.png");
+				dbHelper.insertPic("Casa Dago", "cangas_Dago_2.png");
+				dbHelper.insertPic("Dolmen", "dolmen.png");
+				dbHelper.insertPic("Dolmen", "cangas_dolmen_2.png");
+				dbHelper.insertPic("Dolmen", "cangas_dolmen_3.png");
+				dbHelper.insertPic("Ermita de la Cruz", "cangas_ermita_santa_cruz.png");
+				dbHelper.insertPic("Ermita de la Cruz", "cangas_ermita_santa_cruz_2.png");
+				dbHelper.insertPic("Ermita de la Cruz", "cangas_ermita_santa_cruz_4.png");
+				dbHelper.insertPic("Estatua de Don Pelayo", "cangas_donPelayo.png");
+				dbHelper.insertPic("Estatua de Don Pelayo", "cangas_donPelayo_2.png");
+				dbHelper.insertPic("Estatua de Don Pelayo", "cangas_donPelayo_3.png");
+				dbHelper.insertPic("Iglesia Parroquial", "cangas_iglesiaParroquial.png");
+				dbHelper.insertPic("Iglesia Parroquial", "cangas_iglesiaParroquial_4.png");
+				dbHelper.insertPic("Palacio Pintu", "cangas_Pintu.png");
+				dbHelper.insertPic("Palacio Pintu", "cangas_Pintu_2.png");
+				dbHelper.insertPic("Plaza del mercado", "cangas_mercado.png");
+				dbHelper.insertPic("Puente Romano", "cangas_puenteRomano_2.png");
+				dbHelper.insertPic("Puente Romano", "cangas_puenteRomano_3.png");
+				dbHelper.insertPic("Puente Romano", "cangas_puenteRomano_4.png");
+				dbHelper.insertPic("Capilla de San Antonio", "cangas_SanAntonio.png");
+				dbHelper.insertPic("Capilla de San Antonio", "cangas_SanAntonio_2.png");
 				
-				// Continua metiendo imagenes en assets/img según lugar (fijate como esta nombrados entre las lineas 251-260)
-				// No metas imagenes muy pesadas. y tienes que escribir tb el nombre del archivo
-				// Así se inicializa toda la aplicacion.
 				
-				/*dbHelper.insertPic("Aula del reino de Asturias", "cangas_aulaReino.jpg");
-				dbHelper.insertPic("Aula del reino de Asturias", "cangas_aulaReino.jpg");
-				dbHelper.insertPic("Aula del reino de Asturias", "cangas_aulaReino.jpg");
-				dbHelper.insertPic("Aula del reino de Asturias", "cangas_aulaReino.jpg");
-				dbHelper.insertPic("Aula del reino de Asturias", "cangas_aulaReino.jpg");
-				dbHelper.insertPic("Aula del reino de Asturias", "cangas_aulaReino.jpg");
-				dbHelper.insertPic("Aula del reino de Asturias", "cangas_aulaReino.jpg");
-				dbHelper.insertPic("Aula del reino de Asturias", "cangas_aulaReino.jpg");
-				dbHelper.insertPic("Aula del reino de Asturias", "cangas_aulaReino.jpg");
-				dbHelper.insertPic("Aula del reino de Asturias", "cangas_aulaReino.jpg");
-				dbHelper.insertPic("Aula del reino de Asturias", "cangas_aulaReino.jpg");
-				dbHelper.insertPic("Aula del reino de Asturias", "cangas_aulaReino.jpg");
-				dbHelper.insertPic("Aula del reino de Asturias", "cangas_aulaReino.jpg");
-				dbHelper.insertPic("Aula del reino de Asturias", "cangas_aulaReino.jpg");*/
 				
 	    		
 	    			

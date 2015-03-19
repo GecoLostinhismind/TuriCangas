@@ -67,21 +67,18 @@ public class Galeria extends Activity {
 			myImageAdapter.add(path);
 		}
 		
-		
+	/*	
 		grid.setOnItemClickListener(new OnItemClickListener(){
 
 			  @Override
 			  public void onItemClick(AdapterView<?> parent, View view, int position,
 			    long id) {
-				  
-				 
-				  //IMplementar Código para que cargue la imagen en grande en nueva Activity
-				  
-				
-			   
+				  				 
+				  //Implementar Código para que cargue la imagen en grande en nueva Activity
+				     
 			  }
 
-			});
+			});*/
 
 
 	

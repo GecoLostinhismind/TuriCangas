@@ -34,28 +34,19 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name" 
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".opciones_monumento"
-            android:label="@string/opciones_monumento"
-            android:parentActivityName=".MainActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.turicangas.MainActivity" />
-        </activity>
+        
         <activity
             android:name=".Mapa"
-            android:label="@string/Mapa"
-            android:parentActivityName=".opciones_monumento" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.turicangas.opciones_monumento" />
+            android:label="@string/app_name" 
+            android:screenOrientation="portrait">
         </activity>
 
         <meta-data
@@ -69,11 +60,13 @@
 
         <activity
             android:name=".Opciones"
-            android:label="@string/title_activity_prueba" >
+            android:label="@string/app_name" 
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".Galeria"
-            android:label="@string/title_activity_galeria" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 
