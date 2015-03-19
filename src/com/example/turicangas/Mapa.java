@@ -6,11 +6,10 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 
-import android.app.Activity;
+
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
@@ -31,13 +30,16 @@ public class Mapa  extends FragmentActivity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.mapa);
 		
-		dbHelper = new PlacesDbAdapter(this);
+		//dbHelper = new PlacesDbAdapter(this);
 		
 		//prueba para usar las LatLng de la base de datos, no rula.
 		//Bundle extras = getIntent().getExtras();
 		//name = extras.getString("name");
 		//lat = extras.getString("lat");
 		//lng = extras.getString("lng");
+		//Double latfinal = Double.parseDouble(lat);
+		//Double lngfinal = Double.parseDouble(lng);
+		
 		
 		//LatLng toPosition = new LatLng(lat, lng); 
 		
@@ -48,48 +50,50 @@ public class Mapa  extends FragmentActivity{
         googleMap = mapFragment.getMap();
         
         //marker de prueba...
-        //MarkerOptions markerPuente = new MarkerOptions().position(toPosition).title(name);
+        //MarkerOptions markerPuente = new MarkerOptions().position(new LatLng(latfinal,lngfinal)).title(name);
     	//googleMap.addMarker(markerPuente);	
     	
     	//animation to marker (prueba)   	
-    	//CameraPosition cameraPosition = new CameraPosition.Builder().target( toPosition).zoom(15).build();
+    	//CameraPosition cameraPosition = new CameraPosition.Builder().target( new LatLng(latfinal, lngfinal)).zoom(15).build();
     	//googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
         
+    	//dbHelper.getPlaces();
+    	
         //Markers
         //MarkerOptions markerPuente = new MarkerOptions().position(new LatLng(43.350155,-5.131990)).title("Puente Romano");
     	//googleMap.addMarker(markerPuente);	
 
-    	MarkerOptions markerErmita = new MarkerOptions().position(new LatLng(43.352665, -5.130273)).title("Ermita de la Cruz");
-    	googleMap.addMarker(markerErmita);
+    	//MarkerOptions markerErmita = new MarkerOptions().position(new LatLng(43.352665, -5.130273)).title("Ermita de la Cruz");
+    	//googleMap.addMarker(markerErmita);
     	
-    	MarkerOptions markerDolmen = new MarkerOptions().position(new LatLng(43.352666, -5.130388)).title("Dolmen");
-    	googleMap.addMarker(markerDolmen);
+    	//MarkerOptions markerDolmen = new MarkerOptions().position(new LatLng(43.352666, -5.130388)).title("Dolmen");
+    	//googleMap.addMarker(markerDolmen);
     	
-    	MarkerOptions markerParroq = new MarkerOptions().position(new LatLng(43.350683, -5.127166)).title("Iglesia Parroquial");
-    	googleMap.addMarker(markerParroq);
+    	//MarkerOptions markerParroq = new MarkerOptions().position(new LatLng(43.350683, -5.127166)).title("Iglesia Parroquial");
+    	//googleMap.addMarker(markerParroq);
     	
-    	MarkerOptions markerPelayo = new MarkerOptions().position(new LatLng(43.350895, -5.126334)).title("Estatua de Don Pelayo");
-    	googleMap.addMarker(markerPelayo);
+    	//MarkerOptions markerPelayo = new MarkerOptions().position(new LatLng(43.350895, -5.126334)).title("Estatua de Don Pelayo");
+    	//googleMap.addMarker(markerPelayo);
     	
-    	MarkerOptions markerAula = new MarkerOptions().position(new LatLng(43.350723, -5.130297)).title("Aula del Reino de Asturias");
-    	googleMap.addMarker(markerAula);
+    	//MarkerOptions markerAula = new MarkerOptions().position(new LatLng(43.350723, -5.130297)).title("Aula del Reino de Asturias");
+    	//googleMap.addMarker(markerAula);
     	
-    	MarkerOptions markerCapilla = new MarkerOptions().position(new LatLng(43.348593, -5.125287)).title("Capilla de San Antonio");
-    	googleMap.addMarker(markerCapilla);
+    	//MarkerOptions markerCapilla = new MarkerOptions().position(new LatLng(43.348593, -5.125287)).title("Capilla de San Antonio");
+    	//googleMap.addMarker(markerCapilla);
     	
-    	MarkerOptions markerPintu = new MarkerOptions().position(new LatLng(43.350648, -5.126478)).title("Palacio Pintu");
-    	googleMap.addMarker(markerPintu);
+    	//MarkerOptions markerPintu = new MarkerOptions().position(new LatLng(43.350648, -5.126478)).title("Palacio Pintu");
+    	//googleMap.addMarker(markerPintu);
     	
-    	MarkerOptions markerPlaza = new MarkerOptions().position(new LatLng(43.350615, -5.126276)).title("Plaza del mercado");
-    	googleMap.addMarker(markerPlaza);
+    	//MarkerOptions markerPlaza = new MarkerOptions().position(new LatLng(43.350615, -5.126276)).title("Plaza del mercado");
+    	//googleMap.addMarker(markerPlaza);
     	
-    	MarkerOptions markerDago = new MarkerOptions().position(new LatLng(43.350954, -5.125379)).title("Casa Dago");
-    	googleMap.addMarker(markerDago);
+    	//MarkerOptions markerDago = new MarkerOptions().position(new LatLng(43.350954, -5.125379)).title("Casa Dago");
+    	//googleMap.addMarker(markerDago);
     	
     	
     	//animation to marker
-    	CameraPosition cameraPosition = new CameraPosition.Builder().target( new LatLng(43.350155,-5.131990)).zoom(15).build();
-    	googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+    	//CameraPosition cameraPosition = new CameraPosition.Builder().target( new LatLng(43.350155,-5.131990)).zoom(15).build();
+    	//googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 	
 		
 		
